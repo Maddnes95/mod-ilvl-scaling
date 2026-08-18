@@ -1,0 +1,119 @@
+#
+# mod-ilvl-scaling — configuration
+# Automatically copied to configs/modules/mod_ilvl_scaling.conf at build time.
+# Reloadable in-game with the GM command: .reload config
+#
+
+[worldserver]
+
+#
+#    IlvlScaling.Enable
+#        Description: Enables or disables the module.
+#        Default: 1
+#
+
+IlvlScaling.Enable = 1
+
+#
+#    IlvlScaling.Announce
+#        Description: Shows the computed multipliers to real players when they
+#                     enter a dungeon or raid. Players can also use the
+#                     .ilvlscaling command at any time.
+#        Default: 1
+#
+
+IlvlScaling.Announce = 1
+
+#
+#    IlvlScaling.OnlyInInstances
+#        Description: Restricts the difficulty scaling to dungeons and raids.
+#                     When 0, open-world creatures are scaled as well.
+#        Default: 0
+#
+
+IlvlScaling.OnlyInInstances = 0
+
+#
+#    IlvlScaling.Trivial.Ignore
+#    IlvlScaling.Trivial.LevelDiff
+#        Description: Skips creatures whose level is LevelDiff (or more) below
+#                     the group's average level (grey mobs), so farming old
+#                     content is not slowed down.
+#        Default: 1 / 9
+#
+
+IlvlScaling.Trivial.Ignore = 1
+IlvlScaling.Trivial.LevelDiff = 9
+
+#
+#    IlvlScaling.Cache.Seconds
+#        Description: How long (seconds) a group's computed average item level
+#                     is cached before being recomputed. Keeps the damage hooks
+#                     cheap. Gear changes are picked up after at most this delay.
+#        Default: 30
+#
+
+IlvlScaling.Cache.Seconds = 30
+
+#
+#    IlvlScaling.Baseline.Ilvl80
+#    IlvlScaling.Baseline.PerLevel
+#        Description: Expected ("baseline") average item level. At level 80 the
+#                     baseline is Ilvl80; below 80 it is level * PerLevel.
+#                     Only the item level ABOVE the baseline increases the
+#                     multipliers (delta = group average ilvl - baseline).
+#        Default: 190 / 2.0
+#
+
+IlvlScaling.Baseline.Ilvl80 = 190
+IlvlScaling.Baseline.PerLevel = 2.0
+
+#
+#    IlvlScaling.Health.*
+#        Description: Effective creature health. Damage dealt by the player
+#                     side to scaled creatures is DIVIDED by
+#                     clamp(1 + delta * PerIlvl, Min, Max).
+#                     The displayed health bar is unchanged; fights simply
+#                     last proportionally longer.
+#                     Set Min below 1.0 to make content EASIER for groups
+#                     below the baseline.
+#        Default: PerIlvl 0.02, Min 1.0, Max 4.0
+#                 (ICC 25 gear, avg ilvl ~264: x2.5 effective health)
+#
+
+IlvlScaling.Health.PerIlvl = 0.02
+IlvlScaling.Health.Min = 1.0
+IlvlScaling.Health.Max = 4.0
+
+#
+#    IlvlScaling.Damage.*
+#        Description: Damage dealt by scaled creatures to the player side
+#                     (real players AND bots, pets included) is multiplied by
+#                     clamp(1 + delta * PerIlvl, Min, Max).
+#        Default: PerIlvl 0.01, Min 1.0, Max 3.0
+#                 (ICC 25 gear, avg ilvl ~264: x1.75 creature damage)
+#
+
+IlvlScaling.Damage.PerIlvl = 0.01
+IlvlScaling.Damage.Min = 1.0
+IlvlScaling.Damage.Max = 3.0
+
+#
+#    IlvlScaling.Loot.*
+#        Description: Loot multiplier: clamp(1 + delta * PerIlvl, Min, Max),
+#                     applied to:
+#                       - ScaleMoney: money looted from corpses and chests;
+#                       - ScaleDropChance: drop chance of percentage-based
+#                         creature loot entries (quest items excluded);
+#                       - ScaleReferenceRolls: number of rolls on referenced
+#                         loot groups (boss loot), with probabilistic rounding
+#                         (x1.5 = 50% chance of one extra item).
+#        Default: PerIlvl 0.01, Min 1.0, Max 3.0, all three toggles enabled
+#
+
+IlvlScaling.Loot.PerIlvl = 0.01
+IlvlScaling.Loot.Min = 1.0
+IlvlScaling.Loot.Max = 3.0
+IlvlScaling.Loot.ScaleMoney = 1
+IlvlScaling.Loot.ScaleDropChance = 1
+IlvlScaling.Loot.ScaleReferenceRolls = 1

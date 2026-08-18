@@ -66,4 +66,4 @@ sont rechargeables en jeu avec `.reload config`.
 
 ## Licence
 
-AGPL-3.0, comme AzerothCore.
+[GNU GPL v2](LICENSE) — la même licence qu'AzerothCore.

@@ -60,4 +60,4 @@ reloaded in game with `.reload config`.
 
 ## License
 
-AGPL-3.0, like AzerothCore.
+[GNU GPL v2](LICENSE) — same license as AzerothCore.

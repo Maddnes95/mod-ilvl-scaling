@@ -28,9 +28,9 @@ provided by that fork. No compile-time dependency on mod-playerbots.
    | **Damage** | creature damage (melee, spells, DoTs) is **multiplied** | +1%/ilvl, max ×3 |
    | **Loot** | looted money, drop chance of percentage entries, number of rolls on loot references (boss loot, probabilistic rounding) | +1%/ilvl, max ×3 |
 
-By default only grey mobs (9+ levels below the group average) escape the
-scaling; set `IlvlScaling.OnlyInInstances = 1` to restrict scaling to
-dungeons and raids.
+By default the scaling (difficulty **and** loot) only applies in dungeons
+and raids (set `IlvlScaling.OnlyInInstances = 0` to extend it to the open
+world), and grey mobs (9+ levels below the group average) always escape it.
 
 ## In game
 

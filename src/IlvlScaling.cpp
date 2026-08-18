@@ -135,11 +135,21 @@ bool IsTrivialFor(Creature const* creature, ScalingInfo const& info)
            float(creature->GetLevel()) + float(config.TrivialLevelDiff) <= info.avgLevel;
 }
 
+// Le bonus de loot s'applique-t-il là où se trouve ce joueur ?
+bool LootScalingAppliesHere(Player const* player)
+{
+    if (!config.OnlyInInstances)
+        return true;
+
+    Map const* map = player->FindMap();
+    return map && map->IsDungeon();
+}
+
 void LoadSettings()
 {
     config.Enabled          = sConfigMgr->GetOption<bool>("IlvlScaling.Enable", true);
     config.Announce         = sConfigMgr->GetOption<bool>("IlvlScaling.Announce", true);
-    config.OnlyInInstances  = sConfigMgr->GetOption<bool>("IlvlScaling.OnlyInInstances", false);
+    config.OnlyInInstances  = sConfigMgr->GetOption<bool>("IlvlScaling.OnlyInInstances", true);
     config.IgnoreTrivial    = sConfigMgr->GetOption<bool>("IlvlScaling.Trivial.Ignore", true);
     config.TrivialLevelDiff = sConfigMgr->GetOption<uint32>("IlvlScaling.Trivial.LevelDiff", 9);
     config.CacheSeconds     = sConfigMgr->GetOption<uint32>("IlvlScaling.Cache.Seconds", 30);
@@ -325,6 +335,9 @@ public:
         if (std::strcmp(store.GetName(), "creature_loot_template") != 0)
             return true;
 
+        if (!LootScalingAppliesHere(player))
+            return true;
+
         ScalingInfo info;
         if (GetScalingForPlayer(const_cast<Player*>(player), info))
             chance = std::min(chance * info.lootMult, 100.f);
@@ -342,6 +355,9 @@ public:
             return;
 
         if (std::strcmp(store.GetName(), "creature_loot_template") != 0)
+            return;
+
+        if (!LootScalingAppliesHere(player))
             return;
 
         ScalingInfo info;
@@ -365,6 +381,9 @@ public:
     void OnPlayerBeforeLootMoney(Player* player, Loot* loot) override
     {
         if (!config.Enabled || !config.LootScaleMoney || !player || !loot)
+            return;
+
+        if (!LootScalingAppliesHere(player))
             return;
 
         ScalingInfo info;

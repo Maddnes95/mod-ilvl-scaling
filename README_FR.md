@@ -30,9 +30,10 @@ Exemple : groupe de 2 vrais joueurs en gear ICC 25 (ilvl moyen ~264, delta 74)
 → vie des monstres ×2.48, dégâts ×1.74, loot ×1.74 — même si le reste du
 groupe est composé de bots fraîchement montés.
 
-Par défaut, seuls les monstres « gris » (9 niveaux sous la moyenne du groupe)
-échappent au scaling, et le monde ouvert est scalé comme les instances
-(`IlvlScaling.OnlyInInstances = 0` pour changer ça).
+Par défaut, le scaling (difficulté **et** loot) ne s'applique **qu'en
+donjon/raid** (`IlvlScaling.OnlyInInstances = 0` pour l'étendre au monde
+ouvert), et les monstres « gris » (9 niveaux sous la moyenne du groupe) y
+échappent toujours.
 
 ## En jeu
 

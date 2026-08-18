@@ -26,12 +26,13 @@ IlvlScaling.Announce = 1
 
 #
 #    IlvlScaling.OnlyInInstances
-#        Description: Restricts the difficulty scaling to dungeons and raids.
-#                     When 0, open-world creatures are scaled as well.
-#        Default: 0
+#        Description: Restricts the scaling (difficulty AND loot) to dungeons
+#                     and raids. When 0, open-world creatures are scaled and
+#                     the loot bonuses apply everywhere.
+#        Default: 1
 #
 
-IlvlScaling.OnlyInInstances = 0
+IlvlScaling.OnlyInInstances = 1
 
 #
 #    IlvlScaling.Trivial.Ignore

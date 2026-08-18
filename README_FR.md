@@ -26,6 +26,17 @@ fourni par ce fork. Aucune dépendance de compilation envers mod-playerbots.
    | **Dégâts** | les dégâts des créatures (mêlée, sorts, DoT) sont **multipliés** | +1 %/ilvl, max ×3 |
    | **Loot** | or ramassé, chance de drop des entrées à pourcentage, nombre de jets sur les références (loot de boss, arrondi probabiliste) | +1 %/ilvl, max ×3 |
 
+4. **Upgrade des objets** (`IlvlScaling.Loot.Upgrade.*`) : chaque arme/armure
+   qui drop sur un cadavre de créature est remplacée par un objet aléatoire de
+   même emplacement, même type (tissu/cuir/mailles/plaques, type d'arme…) et
+   même qualité, choisi entre `moyenne − 15` et `moyenne` d'ilvl du groupe.
+   Avec un groupe à ilvl 274, un donjon héroïque droppe donc du 259–274 au
+   lieu du 200. Les objets de quête, drops conditionnels, tokens et emblèmes
+   ne sont jamais touchés ; s'il n'existe aucun objet de la qualité voulue
+   dans la fourchette (ex. les verts s'arrêtent vers l'ilvl 200), les
+   meilleurs disponibles sous la moyenne sont utilisés. Les coffres ne sont
+   pas concernés (seulement les cadavres de créatures).
+
 Exemple : groupe de 2 vrais joueurs en gear ICC 25 (ilvl moyen ~264, delta 74)
 → vie des monstres ×2.48, dégâts ×1.74, loot ×1.74 — même si le reste du
 groupe est composé de bots fraîchement montés.

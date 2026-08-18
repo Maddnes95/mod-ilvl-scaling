@@ -118,3 +118,23 @@ IlvlScaling.Loot.Max = 3.0
 IlvlScaling.Loot.ScaleMoney = 1
 IlvlScaling.Loot.ScaleDropChance = 1
 IlvlScaling.Loot.ScaleReferenceRolls = 1
+
+#
+#    IlvlScaling.Loot.Upgrade.*
+#        Description: Replaces dropped weapons/armor with random equivalents
+#                     (same slot, same armor/weapon type, same quality) whose
+#                     item level falls in [group average ilvl - Band, group
+#                     average ilvl]. Items already in that range are left
+#                     untouched, as are quest items, conditional drops and
+#                     multi-drop items. If no candidate exists in the range
+#                     (e.g. green items above ~ilvl 200), the best available
+#                     items below the group average are used instead.
+#                     MinQuality: minimum quality to upgrade (2 = uncommon,
+#                     3 = rare, 4 = epic).
+#                     Applies to creature corpse loot only (not chests).
+#        Default: Enable 1, Band 15, MinQuality 2
+#
+
+IlvlScaling.Loot.Upgrade.Enable = 1
+IlvlScaling.Loot.Upgrade.Band = 15
+IlvlScaling.Loot.Upgrade.MinQuality = 2

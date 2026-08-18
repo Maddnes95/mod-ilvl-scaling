@@ -33,6 +33,12 @@ struct Settings
     bool LootScaleMoney;
     bool LootScaleDropChance;
     bool LootScaleReferenceRolls;
+
+    // Remplacement des objets qui drop par des équivalents (même emplacement,
+    // même type, même qualité) d'ilvl proche de la moyenne du groupe.
+    bool   LootUpgradeEnable;
+    uint32 LootUpgradeBand;       // fourchette visée : [moyenne - Band, moyenne]
+    uint32 LootUpgradeMinQuality; // 2 = vert (uncommon) et au-dessus
 };
 
 extern Settings config;

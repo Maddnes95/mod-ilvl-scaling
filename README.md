@@ -28,6 +28,16 @@ provided by that fork. No compile-time dependency on mod-playerbots.
    | **Damage** | creature damage (melee, spells, DoTs) is **multiplied** | +1%/ilvl, max ×3 |
    | **Loot** | looted money, drop chance of percentage entries, number of rolls on loot references (boss loot, probabilistic rounding) | +1%/ilvl, max ×3 |
 
+4. **Item upgrading** (`IlvlScaling.Loot.Upgrade.*`): every weapon/armor
+   dropped on a creature corpse is replaced by a random item of the same
+   slot, same armor/weapon type and same quality, picked between
+   `group average ilvl − 15` and `group average ilvl`. With a 274 group, a
+   heroic dungeon drops 259–274 gear instead of 200. Quest items,
+   conditional drops, tokens and emblems are never touched; when no
+   candidate of the right quality exists in the range (e.g. green items stop
+   around ilvl 200), the best available items below the average are used.
+   Chests are not affected (creature corpses only).
+
 By default the scaling (difficulty **and** loot) only applies in dungeons
 and raids (set `IlvlScaling.OnlyInInstances = 0` to extend it to the open
 world), and grey mobs (9+ levels below the group average) always escape it.
